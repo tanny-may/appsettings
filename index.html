@@ -26,16 +26,20 @@
     <form id="signupForm" novalidate>
       <h2>База данных</h2>
       <div class="row">
-        <div class="field">
+        <div class="field" id="provider">
           <label>Провайдер</label>
           <label>
-            <input type="radio" name="level">
+            <input type="radio" name="provider" id="providerMsSql">
             MsSql
           </label>
           <label>
-            <input type="radio" name="level" checked>
+            <input type="radio" name="provider" id="providerPostgres">
             Postgres
           </label>
+        </div>
+        <div class="field" id="connString">
+          <label>Настройки соединения</label>
+          
         </div>
         <div class="field">
           <label for="key">Таймаут выполнения команд</label>
@@ -101,50 +105,12 @@
 
       <div class="field">
         <label>Варианты автоматического обновления данных на странице в секундах</label>
-        <label>
-          <input type="checkbox" name="level">
-          5
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          10
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          15
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          20
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          30
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          40
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          60
-        </label>
+        <input type="text" value="5#10#15#20#30#40#60">
       </div>
-
+      
       <div class="field">
         <label>Статусы, из которых можно переводить карты в статус Central</label>
-        <label>
-          <input type="checkbox" name="level">
-          9
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          5
-        </label>
-        <label>
-          <input type="checkbox" name="level">
-          11
-        </label>
+        <input type="text" value="9/5/11">
       </div>
 
       <div class="field">
