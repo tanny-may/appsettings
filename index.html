@@ -1,11 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-  
+  <div class="topBar">
+    <button class="topBar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+        <rect y="4" width="24" height="2" />
+        <rect y="11" width="24" height="2" />
+        <rect y="18" width="24" height="2" />
+      </svg>
+    </button>
+
+    <p class="topBarText">Настройка Backend-сервера</p>
+  </div>
+
+  <main class="form">
+    <form id="signupForm" novalidate>
+      <h2>База данных</h2>
+      <div class="row">
+        <div class="field">
+          <label>Провайдер</label>
+          <label>
+            <input type="radio" name="level">
+            MsSql
+          </label>
+          <label>
+            <input type="radio" name="level" checked>
+            Postgres
+          </label>
+        </div>
+        <div class="field">
+          <label for="key">Таймаут выполнения команд</label>
+          <input id="key" name="key" type="number" />
+        </div>
+        <div class="field">
+          <label for="key">Размер пула подключений</label>
+          <input id="key" name="key" type="number" />
+        </div>
+        <div class="field">
+          <label for="key">Минимальный размер пула</label>
+          <input id="key" name="key" type="number" min="0" />
+        </div>
+      </div>
+
+      <h2>Настройки</h2>
+      <div class="field">
+        <label>Тема</label>
+        <label>
+          <input type="radio" name="level">
+          Светлая
+        </label>
+        <label>
+          <input type="radio" name="level" checked>
+          Тёмная
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Отображать вкладку киоск</label>
+        <label>
+          <input type="radio" name="level">
+          Да
+        </label>
+        <label>
+          <input type="radio" name="level" checked>
+          Нет
+        </label>
+      </div>
+      <div class="field">
+        <label>Активировать кнопку отмены</label>
+        <label>
+          <input type="radio" name="level">
+          Да
+        </label>
+        <label>
+          <input type="radio" name="level" checked>
+          Нет
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Язык</label>
+        <label>
+          <input type="radio" name="level">
+          Русский
+        </label>
+        <label>
+          <input type="radio" name="level" checked>
+          Английский
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Варианты автоматического обновления данных на странице в секундах</label>
+        <label>
+          <input type="checkbox" name="level">
+          5
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          10
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          15
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          20
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          30
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          40
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          60
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Статусы, из которых можно переводить карты в статус Central</label>
+        <label>
+          <input type="checkbox" name="level">
+          9
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          5
+        </label>
+        <label>
+          <input type="checkbox" name="level">
+          11
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Подтверждение администратором для перевода карты в статус Отмена</label>
+        <label>
+          <input type="radio" name="level">
+          Да
+        </label>
+        <label>
+          <input type="radio" name="level" checked>
+          Нет
+        </label>
+      </div>
+
+      <h2>Лицензия</h2>
+      <div class="field">
+        <label for="key">Файл лицензии для сервиса</label>
+        <input id="key" name="key" type="file"/>
+      </div>
+
+      <button class="btn" type="submit">Сохранить</button>
+      <button class="btn" type="reset">Перезапустить сервис</button>
+    </form>
+  </main>
 </body>
+
 </html>
