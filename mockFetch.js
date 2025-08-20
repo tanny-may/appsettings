@@ -3,12 +3,13 @@ export async function mockFetch(url, params) {
 		return fetch(baseUrl + url, params);
 	}
 
-	console.log(`mockFetch: url=${url}, params=${JSON.stringify(params)}`);
 	let data = {};
 	if (url === '/api/settings/get') {
 		const response = await fetch('./appsettings.json', params);
 		data = await response.json();
 	}
+
+	console.log(`mockFetch: url=${url}, params=${JSON.stringify(params)}, responseData=${JSON.stringify(data)}`);
 
 	return {
 		ok: true,
