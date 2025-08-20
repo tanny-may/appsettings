@@ -1,3 +1,44 @@
+export function renderSettingsForm(data) {
+	renderDbSettings(data);
+	renderCommonSettings(data);
+	renderLicense(data);
+}
+
+function renderDbSettings(data) {
+	const selectedProvider = data['Database']['Provider'];
+	const connStringSettings = parseConnString(data['ConnectionStrings'][selectedProvider]);
+
+	const providerInput = document.getElementById('provider' + selectedProvider);
+	providerInput.checked = true;
+
+	const connStringInputs = document.getElementById('connString');
+	Object.entries(connStringSettings).map(([key, value]) => {
+		const div = document.createElement('div');
+		div.className = 'field';
+
+		const label = document.createElement('label');
+		label.textContent = key;
+
+		const input = document.createElement('input');
+		input.type = 'text';
+		input.name = key;
+		input.value = value;
+
+		div.appendChild(label);
+		div.appendChild(input);
+		connStringInputs.appendChild(div);
+	});
+
+	const commandTimeoutInput = document.getElementById('commandTimeout');
+	commandTimeoutInput.value = data['Database']['CommandTimeout'];
+
+	const maxPoolSize = document.getElementById('maxPoolSize');
+	maxPoolSize.value = data['Database']['MaxPoolSize'];
+
+	const minPoolSize = document.getElementById('minPoolSize');
+	minPoolSize.value = data['Database']['MinPoolSize'];
+}
+
 function parseConnString(string) {
 	const arr = string.split(';');
 	const obj = {};
@@ -11,22 +52,7 @@ function parseConnString(string) {
 	return obj;
 }
 
-export function renderSettingsForm(data) {
-	const selectedProvider = data['Database']['Provider'];
-	const connStringSettings = parseConnString(data['ConnectionStrings'][selectedProvider]);
-
-	const providerInput = document.getElementById('provider' + selectedProvider);
-	providerInput.checked = true;
-
-	const commandTimeoutInput = document.getElementById('commandTimeout');
-	commandTimeoutInput.value = data['Database']['CommandTimeout'];
-
-	const maxPoolSize = document.getElementById('maxPoolSize');
-	maxPoolSize.value = data['Database']['MaxPoolSize'];
-
-	const minPoolSize = document.getElementById('minPoolSize');
-	minPoolSize.value = data['Database']['MinPoolSize'];
-
+function renderCommonSettings(data) {
 	const selectedTheme = data['Settings']['Theme'];
 	const theme = document.getElementById('theme' + selectedTheme);
 	theme.checked = true;
@@ -52,26 +78,9 @@ export function renderSettingsForm(data) {
 
 	const statusesToCentral = document.getElementById('statusesToCentral');
 	statusesToCentral.value = data['Settings']['StatusesToCentral'];
+}
 
+function renderLicense(data) {
 	const license = document.getElementById('license');
 	license.value = data['TrustCert']['Name'];
-
-	const connStringInputs = document.getElementById('connString');
-
-	Object.entries(connStringSettings).map(([key, value]) => {
-		const div = document.createElement('div');
-		div.className = 'field';
-
-		const label = document.createElement('label');
-		label.textContent = key;
-
-		const input = document.createElement('input');
-		input.type = 'text';
-		input.name = key;
-		input.value = value;
-
-		div.appendChild(label);
-		div.appendChild(input);
-		connStringInputs.appendChild(div);
-	});
 }
