@@ -103,11 +103,17 @@ h2 {
   background: #0d4477;
 }
 
-.btn:nth-of-type(2) {
-  background: #e0e0e0;
-  color: #333;
+.restartDiv {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.btn:nth-of-type(2):hover {
+.restartBtn:hover {
   background: #cacaca;
+}
+
+.restartBtn {
+  background: #e0e0e0;
+  color: #333;
+  margin-left: -10px;
 }

@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script>
+    const baseUrl = 'localhost'
+  </script>
+  <script src="script.js" type="module" defer></script>
 </head>
 
 <body>
@@ -21,36 +24,40 @@
 
     <p class="topBarText">Настройка Backend-сервера</p>
   </div>
+  
+  <div class="restartDiv">
+    <button class="btn restartBtn" type="button" id="restartBtn">Перезапустить сервис</button>
+  </div>
 
   <main class="form">
-    <form id="signupForm" novalidate>
+    <form id="settingsForm" novalidate>
       <h2>База данных</h2>
       <div class="row">
         <div class="field" id="provider">
           <label>Провайдер</label>
           <label>
-            <input type="radio" name="provider" id="providerMsSql">
+            <input type="radio" name="provider" id="providerMsSql" value="MsSql">
             MsSql
           </label>
           <label>
-            <input type="radio" name="provider" id="providerPostgres">
+            <input type="radio" name="provider" id="providerPostgres" value="Postgres">
             Postgres
           </label>
         </div>
-        <div class="field" id="connString">
+        <div class="field" name="connString" id="connString">
           <label>Настройки соединения</label>
         </div>
         <div class="field">
-          <label for="key">Таймаут выполнения команд</label>
-          <input id="commandTimeout" name="key" type="number" />
+          <label>Таймаут выполнения команд</label>
+          <input id="commandTimeout" nname="commandTimeout" type="number" />
         </div>
         <div class="field">
-          <label for="key">Размер пула подключений</label>
-          <input id="maxPoolSize" name="key" type="number" />
+          <label>Размер пула подключений</label>
+          <input id="maxPoolSize"  name="maxPoolSize" type="number" />
         </div>
         <div class="field">
-          <label for="key">Минимальный размер пула</label>
-          <input id="minPoolSize" name="key" type="number" />
+          <label>Минимальный размер пула</label>
+          <input id="minPoolSize"  name="minPoolSize" type="number" />
         </div>
       </div>
 
@@ -58,11 +65,11 @@
       <div class="field" id="theme">
         <label>Тема</label>
         <label>
-          <input type="radio" name="theme" id="themewhite">
+          <input type="radio" name="theme" id="themewhite" value="white">
           Светлая
         </label>
         <label>
-          <input type="radio" name="theme" id="themeblack">
+          <input type="radio" name="theme" id="themeblack" value="black">
           Тёмная
         </label>
       </div>
@@ -70,22 +77,22 @@
       <div class="field" id="kiosks">
         <label>Отображать вкладку киоск</label>
         <label>
-          <input type="radio" name="kiosks" id="kioskstrue">
+          <input type="radio" name="kiosks" id="kioskstrue" value="true">
           Да
         </label>
         <label>
-          <input type="radio" name="kiosks" id="kiosksfalse">
+          <input type="radio" name="kiosks" id="kiosksfalse" value="false">
           Нет
         </label>
       </div>
       <div class="field" id="cancel">
         <label>Активировать кнопку отмены</label>
         <label>
-          <input type="radio" name="cancel" id="canceltrue">
+          <input type="radio" name="cancel" id="canceltrue" value="true">
           Да
         </label>
         <label>
-          <input type="radio" name="cancel" id="cancelfalse">
+          <input type="radio" name="cancel" id="cancelfalse" value="false">
           Нет
         </label>
       </div>
@@ -93,33 +100,33 @@
       <div class="field" id="lang">
         <label>Язык</label>
         <label>
-          <input type="radio" name="lang" id="langru">
+          <input type="radio" name="lang" id="langru" value="ru">
           Русский
         </label>
         <label>
-          <input type="radio" name="lang" id="langen">
+          <input type="radio" name="lang" id="langen" value="en">
           Английский
         </label>
       </div>
 
       <div class="field">
         <label>Варианты автоматического обновления данных на странице в секундах</label>
-        <input type="text" id="update">
+        <input type="text" name="update" id="update">
       </div>
       
       <div class="field">
         <label>Статусы, из которых можно переводить карты в статус Central</label>
-        <input type="text" id="statusesToCentral">
+        <input type="text" name="statusesToCentral" id="statusesToCentral">
       </div>
 
       <div class="field" id="adminCancel">
         <label>Подтверждение администратором для перевода карты в статус Отмена</label>
         <label>
-          <input type="radio" name="level" id="adminCanceltrue">
+          <input type="radio" name="adminCancel"  id="adminCanceltrue" value="true">
           Да
         </label>
         <label>
-          <input type="radio" name="level" id="adminCancelfalse">
+          <input type="radio" name="adminCancel" id="adminCancelfalse" value="false">
           Нет
         </label>
       </div>
@@ -127,11 +134,10 @@
       <h2>Лицензия</h2>
       <div class="field">
         <label for="key">Файл лицензии для сервиса</label>
-        <input id="license" name="key" type="text"/>
+        <input id="license" name="license" type="text"/>
       </div>
 
       <button class="btn" type="submit">Сохранить</button>
-      <button class="btn" type="reset">Перезапустить сервис</button>
     </form>
   </main>
 </body>
