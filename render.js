@@ -1,4 +1,30 @@
-export function renderSettingsForm(data) {
+import { mockFetch } from './mockFetch.js';
+
+export function setRenderHandlers() {
+	document.addEventListener('DOMContentLoaded', () => {
+		mockFetch('/api/settings/get')
+			.then((res) => res.json())
+			.then((data) => {
+				renderSettingsForm(data);
+			})
+			.catch((err) => console.error(err));
+	});
+
+	// для отображения новых настроек при выборе другого провайдера
+	const providerSelects = document.querySelectorAll('[name="provider"]');
+	providerSelects.forEach((select) =>
+		select.addEventListener('change', (event) => {
+			mockFetch('/api/settings/get')
+				.then((res) => res.json())
+				.then((data) => {
+					renderConnStringSettings(data, event.target.value);
+				})
+				.catch((err) => console.error(err));
+		})
+	);
+}
+
+function renderSettingsForm(data) {
 	renderDbSettings(data);
 	renderCommonSettings(data);
 	renderLicense(data);
@@ -6,28 +32,10 @@ export function renderSettingsForm(data) {
 
 function renderDbSettings(data) {
 	const selectedProvider = data['Database']['Provider'];
-	const connStringSettings = parseConnString(data['ConnectionStrings'][selectedProvider]);
-
 	const providerInput = document.getElementById('provider' + selectedProvider);
 	providerInput.checked = true;
 
-	const connStringInputs = document.getElementById('connString');
-	Object.entries(connStringSettings).map(([key, value]) => {
-		const div = document.createElement('div');
-		div.className = 'field';
-
-		const label = document.createElement('label');
-		label.textContent = key;
-
-		const input = document.createElement('input');
-		input.type = 'text';
-		input.name = key;
-		input.value = value;
-
-		div.appendChild(label);
-		div.appendChild(input);
-		connStringInputs.appendChild(div);
-	});
+	renderConnStringSettings(data, selectedProvider);
 
 	const commandTimeoutInput = document.getElementById('commandTimeout');
 	commandTimeoutInput.value = data['Database']['CommandTimeout'];
@@ -50,6 +58,33 @@ function parseConnString(string) {
 	}
 
 	return obj;
+}
+
+function renderConnStringSettings(data, selectedProvider) {
+	const connStringSettings = parseConnString(data['ConnectionStrings'][selectedProvider]);
+	const connStringInputs = document.getElementById('connString');
+
+	// очищаем старые настройки перед тем как заново их отрисовать
+	while (connStringInputs.firstChild) {
+		connStringInputs.removeChild(connStringInputs.lastChild);
+	}
+
+	Object.entries(connStringSettings).map(([key, value]) => {
+		const div = document.createElement('div');
+		div.className = 'field';
+
+		const label = document.createElement('label');
+		label.textContent = key;
+
+		const input = document.createElement('input');
+		input.type = 'text';
+		input.name = key;
+		input.value = value;
+
+		div.appendChild(label);
+		div.appendChild(input);
+		connStringInputs.appendChild(div);
+	});
 }
 
 function renderCommonSettings(data) {
