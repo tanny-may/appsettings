@@ -5,7 +5,16 @@ export function setActions() {
 	settingsForm.addEventListener('submit', handleFormSubmit);
 
 	const restartServiceButton = document.getElementById('restartBtn');
-	restartServiceButton.addEventListener('click', restartService);
+	restartServiceButton.addEventListener('click', handleRestartService);
+}
+
+async function handleFormSubmit(event) {
+	event.preventDefault();
+	await mockFetch('/api/settings/save', {
+		method: 'PUT',
+		body: serializeForm(event.target),
+	});
+	console.log('Форма сохранена');
 }
 
 function serializeForm(settingsForm) {
@@ -14,19 +23,10 @@ function serializeForm(settingsForm) {
 	return JSON.stringify(obj);
 }
 
-async function handleFormSubmit(event) {
+async function handleRestartService(event) {
 	event.preventDefault();
-	const response = await mockFetch('/api/settings/save', {
-		method: 'PUT',
-		body: serializeForm(event.target),
-	});
-	console.log(response);
-}
-
-async function restartService(event) {
-	event.preventDefault();
-	console.log('Сервис перезапущен');
-	return await mockFetch('/api/tech/restart', {
+	await mockFetch('/api/tech/restart', {
 		method: 'GET',
 	});
+	console.log('Сервис перезапущен');
 }
