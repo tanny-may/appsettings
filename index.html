@@ -39,88 +39,87 @@
         </div>
         <div class="field" id="connString">
           <label>Настройки соединения</label>
-          
         </div>
         <div class="field">
           <label for="key">Таймаут выполнения команд</label>
-          <input id="key" name="key" type="number" />
+          <input id="commandTimeout" name="key" type="number" />
         </div>
         <div class="field">
           <label for="key">Размер пула подключений</label>
-          <input id="key" name="key" type="number" />
+          <input id="maxPoolSize" name="key" type="number" />
         </div>
         <div class="field">
           <label for="key">Минимальный размер пула</label>
-          <input id="key" name="key" type="number" min="0" />
+          <input id="minPoolSize" name="key" type="number" />
         </div>
       </div>
 
       <h2>Настройки</h2>
-      <div class="field">
+      <div class="field" id="theme">
         <label>Тема</label>
         <label>
-          <input type="radio" name="level">
+          <input type="radio" name="theme" id="themewhite">
           Светлая
         </label>
         <label>
-          <input type="radio" name="level" checked>
+          <input type="radio" name="theme" id="themeblack">
           Тёмная
         </label>
       </div>
 
-      <div class="field">
+      <div class="field" id="kiosks">
         <label>Отображать вкладку киоск</label>
         <label>
-          <input type="radio" name="level">
+          <input type="radio" name="kiosks" id="kioskstrue">
           Да
         </label>
         <label>
-          <input type="radio" name="level" checked>
+          <input type="radio" name="kiosks" id="kiosksfalse">
           Нет
         </label>
       </div>
-      <div class="field">
+      <div class="field" id="cancel">
         <label>Активировать кнопку отмены</label>
         <label>
-          <input type="radio" name="level">
+          <input type="radio" name="cancel" id="canceltrue">
           Да
         </label>
         <label>
-          <input type="radio" name="level" checked>
+          <input type="radio" name="cancel" id="cancelfalse">
           Нет
         </label>
       </div>
 
-      <div class="field">
+      <div class="field" id="lang">
         <label>Язык</label>
         <label>
-          <input type="radio" name="level">
+          <input type="radio" name="lang" id="langru">
           Русский
         </label>
         <label>
-          <input type="radio" name="level" checked>
+          <input type="radio" name="lang" id="langen">
           Английский
         </label>
       </div>
 
       <div class="field">
         <label>Варианты автоматического обновления данных на странице в секундах</label>
-        <input type="text" value="5#10#15#20#30#40#60">
+        <input type="text" id="update">
       </div>
       
       <div class="field">
         <label>Статусы, из которых можно переводить карты в статус Central</label>
-        <input type="text" value="9/5/11">
+        <input type="text" id="statusesToCentral">
       </div>
 
-      <div class="field">
+      <div class="field" id="adminCancel">
         <label>Подтверждение администратором для перевода карты в статус Отмена</label>
         <label>
-          <input type="radio" name="level">
+          <input type="radio" name="level" id="adminCanceltrue">
           Да
         </label>
         <label>
-          <input type="radio" name="level" checked>
+          <input type="radio" name="level" id="adminCancelfalse">
           Нет
         </label>
       </div>
@@ -128,7 +127,7 @@
       <h2>Лицензия</h2>
       <div class="field">
         <label for="key">Файл лицензии для сервиса</label>
-        <input id="key" name="key" type="file"/>
+        <input id="license" name="key" type="text"/>
       </div>
 
       <button class="btn" type="submit">Сохранить</button>
