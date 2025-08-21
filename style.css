@@ -106,6 +106,7 @@ h2 {
 .restartDiv {
   display: flex;
   justify-content: flex-end;
+  padding-right: 20px;
 }
 
 .restartBtn:hover {
@@ -115,5 +116,4 @@ h2 {
 .restartBtn {
   background: #e0e0e0;
   color: #333;
-  margin-left: -10px;
 }
